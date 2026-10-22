@@ -7,9 +7,12 @@ import { StringSession } from "teleproto/sessions";
 import { NewMessage } from "teleproto/events";
 import { BotHandler } from "./Handlers/BotHandler";
 import { UserbotHandler, Role } from "./Handlers/UserbotHandler";
+import express from "express";
 
+const app = express();
 const apiId = Number(process.env["API_ID"]);
 const apiHash = String(process.env["API_HASH"]);
+const port = String(process.env["PORT"] ?? 3000);
 
 async function startUserbot(session: string | undefined, role: Role) {
   if (!session) throw new Error(`SESSION_STRING untuk ${role} kosong`);
@@ -49,6 +52,13 @@ async function main() {
   bot.start();
   console.log("semua jalan");
 }
+
+app.listen(port, () => {
+  console.log("ok");
+});
+app.get("/", (req, res) => {
+  res.status(200).json({ ok: true });
+});
 
 main().catch((e) => {
   console.error(e);
