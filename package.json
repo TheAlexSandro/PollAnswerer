@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "grammy": "^1.46.0",
+    "node-cache": "^5.1.2",
+    "readline-sync": "^1.4.10",
+    "teleproto": "^1.230.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "@types/readline-sync": "^1.4.8",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
+  },
+  "name": "pollanswerer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon --exec tsx src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --outdir=dist --entry-names=[name] --packages=external",
+    "start": "node dist/index.js"
+  },
+  "keywords": [],
+  "type": "module"
+}
